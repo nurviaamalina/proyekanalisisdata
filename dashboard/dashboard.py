@@ -112,13 +112,20 @@ st.pyplot(fig2)
 # -------------------------
 st.subheader("📦 Distribusi Status Pesanan")
 
-status_count = filtered_df['order_status'].value_counts()
+status_count = filtered_df['order_status'].value_counts().sort_values(ascending=True)
 
-fig3, ax3 = plt.subplots()
-ax3.pie(status_count, labels=status_count.index, autopct='%1.1f%%')
+fig3, ax3 = plt.subplots(figsize=(8,5))
+
+sns.barplot(
+    x=status_count.values,
+    y=status_count.index,
+    ax=ax3
+)
+
+ax3.set_xlabel("Jumlah Order")
+ax3.set_ylabel("Status")
 
 st.pyplot(fig3)
-
 # -------------------------
 # DATA TABLE
 # -------------------------
